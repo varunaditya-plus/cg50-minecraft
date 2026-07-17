@@ -1,0 +1,666 @@
+[
+  {
+    "path": "assets-cg/classic/textures/bedrock.png",
+    "url": "https://classic.minecraft.net/assets/textures/bedrock.png",
+    "sha256": "d38911bc6502957ccd3e0fa65da399f8b7ada20111f522f447c2d0a9720bdf87",
+    "bytes": 1195,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/brown_mushroom.png",
+    "url": "https://classic.minecraft.net/assets/textures/brown_mushroom.png",
+    "sha256": "0b7019772fe9fbdf34073c7473ddc079ee31e5836947cfbf9ebe87ec26a5f4e1",
+    "bytes": 1012,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/bush.png",
+    "url": "https://classic.minecraft.net/assets/textures/bush.png",
+    "sha256": "2466160bd2136b5ca4b204fefdbfa7b8e0a14c3e956e8488d60b5ab77fb23245",
+    "bytes": 1193,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/button.png",
+    "url": "https://classic.minecraft.net/assets/textures/button.png",
+    "sha256": "31b9964a0d13c84925a7edd6139edbcfa82dd7fd93c5ee8c7f1c86767dcc28d6",
+    "bytes": 3591,
+    "width": 200,
+    "height": 20
+  },
+  {
+    "path": "assets-cg/classic/textures/button_over.png",
+    "url": "https://classic.minecraft.net/assets/textures/button_over.png",
+    "sha256": "0434b2ec70aff65aba89a1fb1db9b6f6a9a6e03747e1de8c9a9d08ee093b2cac",
+    "bytes": 4789,
+    "width": 200,
+    "height": 20
+  },
+  {
+    "path": "assets-cg/classic/textures/clouds.png",
+    "url": "https://classic.minecraft.net/assets/textures/clouds.png",
+    "sha256": "89d4e5d4ca8baba4cdeb79e545adc025da3bf3bf7c0f542b6d99c7db85b8ca83",
+    "bytes": 10642,
+    "width": 256,
+    "height": 256
+  },
+  {
+    "path": "assets-cg/classic/textures/color0.png",
+    "url": "https://classic.minecraft.net/assets/textures/color0.png",
+    "sha256": "a0c0eb03b7feb38646bac055a14c6dee9b234120ae387bad0842be74af7852b2",
+    "bytes": 1455,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color1.png",
+    "url": "https://classic.minecraft.net/assets/textures/color1.png",
+    "sha256": "068c3a5ad001fae0959cde6e50de22e3cc33635a03ddb86a3025609331b3510d",
+    "bytes": 1510,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color10.png",
+    "url": "https://classic.minecraft.net/assets/textures/color10.png",
+    "sha256": "1352d460f65021f06901c4b49905fd0c099f21305722c713cc28d5c342f90375",
+    "bytes": 1540,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color11.png",
+    "url": "https://classic.minecraft.net/assets/textures/color11.png",
+    "sha256": "6515e1cfb3e3cc3f84540bff71b0f2fafae7cd06988cc7eead3bf702c007aa59",
+    "bytes": 1476,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color12.png",
+    "url": "https://classic.minecraft.net/assets/textures/color12.png",
+    "sha256": "49b34476d70a513230b10ee6b651c34fb41debf23a9e983c4060afb106b2ab2d",
+    "bytes": 1512,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color13.png",
+    "url": "https://classic.minecraft.net/assets/textures/color13.png",
+    "sha256": "1d1b4ece6f2c28746597e55ef4f589877df89d699eac6a9e410273d3ca471953",
+    "bytes": 1352,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color14.png",
+    "url": "https://classic.minecraft.net/assets/textures/color14.png",
+    "sha256": "bdf37f69238e32cf5c68371d5d26442463e99f49d0608fb2be01f5de304ee3fe",
+    "bytes": 1395,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color15.png",
+    "url": "https://classic.minecraft.net/assets/textures/color15.png",
+    "sha256": "8e7efd4912f5df8daad73bc19710c6a694027c2bfdf3acd54737a53ee014d3dc",
+    "bytes": 1412,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color2.png",
+    "url": "https://classic.minecraft.net/assets/textures/color2.png",
+    "sha256": "7afddb0efe142d3cd8fc8860a3db598c91fee031f5d703b29d59ecff9ab01b54",
+    "bytes": 1476,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color3.png",
+    "url": "https://classic.minecraft.net/assets/textures/color3.png",
+    "sha256": "a969039fe36d18aafd16d38ca1f8143ccd349e8edaa7f70241f466e5afe8eee3",
+    "bytes": 1513,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color4.png",
+    "url": "https://classic.minecraft.net/assets/textures/color4.png",
+    "sha256": "5b677310a54d4d608363d88d43f70636fae39ab382fabd25b527926e3e08d77e",
+    "bytes": 1456,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color5.png",
+    "url": "https://classic.minecraft.net/assets/textures/color5.png",
+    "sha256": "0379d9c988653e8215ca348226145b47547ad754ffbcf46d8f65c75a22c9309f",
+    "bytes": 1510,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color6.png",
+    "url": "https://classic.minecraft.net/assets/textures/color6.png",
+    "sha256": "fa5c4a8b449aa39f15f92506e130e969f62095d7ccf7e99d29703d3d95ab6729",
+    "bytes": 1477,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color7.png",
+    "url": "https://classic.minecraft.net/assets/textures/color7.png",
+    "sha256": "5f3aa7353c17acec4324ed20119d5954f6508b9eca8aee02fcc71020fb5dc2da",
+    "bytes": 1525,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color8.png",
+    "url": "https://classic.minecraft.net/assets/textures/color8.png",
+    "sha256": "288e2baeaf2935fb9a925c9a823268fbeedd7859ba9263f9ab8e654787101def",
+    "bytes": 1489,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/color9.png",
+    "url": "https://classic.minecraft.net/assets/textures/color9.png",
+    "sha256": "0446d71bcc91e4e6fdac3a1a1d8452c7a9dd943ffe14ca06652a36a33ca4a7dc",
+    "bytes": 1513,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/crosshair.png",
+    "url": "https://classic.minecraft.net/assets/textures/crosshair.png",
+    "sha256": "abdec21c13b6be0676e2e46b5a680e8fe5a3b35e59d9643ad40725b9d47e4b47",
+    "bytes": 1037,
+    "width": 64,
+    "height": 64
+  },
+  {
+    "path": "assets-cg/classic/textures/dirt.png",
+    "url": "https://classic.minecraft.net/assets/textures/dirt.png",
+    "sha256": "74b97b4ff1cb85bc66659f0d91bee62b17a9db6797a77da0746859b617ef7f44",
+    "bytes": 1322,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/glass.png",
+    "url": "https://classic.minecraft.net/assets/textures/glass.png",
+    "sha256": "7354792364389cf43f19dce1bb5521e812c0335d50a56ac1871f3c264d6f48e4",
+    "bytes": 1079,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/gold.png",
+    "url": "https://classic.minecraft.net/assets/textures/gold.png",
+    "sha256": "25193ce6343a7b1d48b7dc95d95269f2954782b674594472cfae23c84b5fb524",
+    "bytes": 1089,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/grass.png",
+    "url": "https://classic.minecraft.net/assets/textures/grass.png",
+    "sha256": "440bdfa82a6240f105c8f8148b6c1b4e2ba8736649b645cb9e923b2873fa579d",
+    "bytes": 1545,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/grass_dirt.png",
+    "url": "https://classic.minecraft.net/assets/textures/grass_dirt.png",
+    "sha256": "ee1f8662e4cfe9730fc8b92c598ca09d0992f9e510bc5c7fe59a672cab0bf524",
+    "bytes": 1412,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/gravel.png",
+    "url": "https://classic.minecraft.net/assets/textures/gravel.png",
+    "sha256": "df8f824fa4637d1efaaefc23ea201dbcb9c48affd16fb77dc9c5daae38194683",
+    "bytes": 1710,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/hotbar_bg.png",
+    "url": "https://classic.minecraft.net/assets/textures/hotbar_bg.png",
+    "sha256": "cf5c3a95aa19fa99f5f9cf1023466e2bec511c7c61877fb00b2232ca8d3d4836",
+    "bytes": 5033,
+    "width": 182,
+    "height": 22
+  },
+  {
+    "path": "assets-cg/classic/textures/hotbar_selection.png",
+    "url": "https://classic.minecraft.net/assets/textures/hotbar_selection.png",
+    "sha256": "543099476d4ffdf3961f6a863198ed756b2ac651f9fa1ad5b566fe898c003a4f",
+    "bytes": 1434,
+    "width": 24,
+    "height": 24
+  },
+  {
+    "path": "assets-cg/classic/textures/lava.png",
+    "url": "https://classic.minecraft.net/assets/textures/lava.png",
+    "sha256": "65a4826ea968ba079b3ef18d3d12c51ac8043d44eef85a46ba5aac35ae418e2d",
+    "bytes": 1131,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/leaves_opaque.png",
+    "url": "https://classic.minecraft.net/assets/textures/leaves_opaque.png",
+    "sha256": "6b92eb7c4f2277869b755952f332faa067f1302e113fd9cd5287a96b32cbb5ab",
+    "bytes": 1571,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/11.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/11.png",
+    "sha256": "349d55e6a6660658f3d75965190b3264e698f7c9fccf69d031bf4bc862e3ea67",
+    "bytes": 2088,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/12.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/12.png",
+    "sha256": "0f8afaa6d7de29ddacc8dbc0c48ee973ccdfc92f2da5fc1937cea2fa2ce37947",
+    "bytes": 2358,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/13.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/13.png",
+    "sha256": "63992984441278c2da55848823ff70fcba9c90629b3141a61cb935cd44af73b5",
+    "bytes": 1738,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/14.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/14.png",
+    "sha256": "b8782b087834d669ec00116a41ee71992ebdb8c1f3048dda21d31e895bb9735d",
+    "bytes": 1834,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/15.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/15.png",
+    "sha256": "2ec49fa4d59c4050edc4dc6a5e0cfa5218629959792c725433c70c6316d050d3",
+    "bytes": 233,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/16.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/16.png",
+    "sha256": "fb4c68ff4a9832a1dce53b4cfe3d5d08b67a0f5e62b85c6ccfc85976374c8f06",
+    "bytes": 176,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/2.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/2.png",
+    "sha256": "ea1be3a98f8e80c311cf850ede39874f924737ffc70584af46b46bca57c6f2ec",
+    "bytes": 957,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/21.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/21.png",
+    "sha256": "ad8a2d65cc0b1f86ec96bd8a4fd14cab378d0d5ad0534136b7711adb31a117ba",
+    "bytes": 769,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/22.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/22.png",
+    "sha256": "7cf78f2218536789dabad98c360d95a74ceb943e159d137fc14b0b19686d7bb8",
+    "bytes": 1888,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/23.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/23.png",
+    "sha256": "4d4673fa06fe62fd81ae6d6b84ee8c665ccd97de84a4c67cac9034d854ea540a",
+    "bytes": 715,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/24.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/24.png",
+    "sha256": "0120eb82aa6b874b5484f9d0f505203c9e73aefbbc0dc68878ce9d3ec33ddabc",
+    "bytes": 1619,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/25.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/25.png",
+    "sha256": "337179a597db91dfe74a96dcf8576296bcc0aef01f00ce86268a0fd314406527",
+    "bytes": 1809,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/26.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/26.png",
+    "sha256": "f0f96156507adec9e96b513a02afeb3aebc7ef6267da440fca8e3a23dac7333d",
+    "bytes": 1678,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/27.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/27.png",
+    "sha256": "7bebce74692cfc44993839951e425b9075e35d101106dccbb3588c9f9109042d",
+    "bytes": 1815,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/28.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/28.png",
+    "sha256": "6f3c6df1caab895725851fd04a2570c58ed6041c6ffa020321c8a68671459315",
+    "bytes": 1654,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/29.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/29.png",
+    "sha256": "12f187fda52f1ec1fd04862089d25f209ae6fe930352cdb99b042fb0f5d9efc7",
+    "bytes": 1815,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/3.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/3.png",
+    "sha256": "3a0db812770e7d1980327e349264a3a3bcdf969fdfb4e739b1928d33eff2d59a",
+    "bytes": 1238,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/30.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/30.png",
+    "sha256": "7ba2d93da6372d4cf905bf7dd6b8ac667aa3b283e6c0e452d703337b63bf7181",
+    "bytes": 1705,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/31.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/31.png",
+    "sha256": "18cbcfec6c097c9bbddc6ac4572b3a4d8583a77d6989ddb733d50b6364b80d74",
+    "bytes": 1920,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/32.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/32.png",
+    "sha256": "ebe4f405f58921a96fa5ad9eae01e97b69aef7e01300fa0a3a4fee75ef15993b",
+    "bytes": 1725,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/33.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/33.png",
+    "sha256": "6029526e9c440e68d1c08f844057c59d27dddb5670d24807dadfaa0c2cb09d52",
+    "bytes": 1820,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/34.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/34.png",
+    "sha256": "0e61a00bac3e9402e7a12062b27f609ad1c9575d24ae8c99803344bd43b7212d",
+    "bytes": 1877,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/35.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/35.png",
+    "sha256": "ce7a9816295741fa403479c761ef8a893ddb600adf0e51749aa2951892c244c3",
+    "bytes": 1695,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/36.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/36.png",
+    "sha256": "96ed3602fea66984c293586a99242173e726e2a800bed6d7b3de08d85a95a8df",
+    "bytes": 1811,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/37.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/37.png",
+    "sha256": "45ca2db31fe8a8834dcbf7b1b90bcbc445f073a1bbfebacada9a34e3a97da95d",
+    "bytes": 1330,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/38.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/38.png",
+    "sha256": "82f8bb430b4da4012b6487a02f5b5eb57eadebdc75f72c8a72d1412440c99592",
+    "bytes": 1423,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/39.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/39.png",
+    "sha256": "12877f3b67012fd4ee47f71ceef58d8fbf6fc8d3249f135f0b3e536c5dc623c0",
+    "bytes": 1488,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/4.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/4.png",
+    "sha256": "d0c79eded10c674648be641c1c671515b4c41b84ce42b17b2146e55073769a70",
+    "bytes": 1213,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/5.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/5.png",
+    "sha256": "1ba6ba98ad329724b43467535c6355516773261e344a6f95357e7fb31b752d94",
+    "bytes": 267,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/6.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/6.png",
+    "sha256": "ce19092dfed7d0c7d87696f686c0d51d3343a2467831eefd7f04b3a275d35813",
+    "bytes": 258,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/8.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/8.png",
+    "sha256": "782aa00e49735a676ed8c06b4ca504a3d5e5d7e5ef8b1727b3b6ce248afcee40",
+    "bytes": 436,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/previews/9.png",
+    "url": "https://classic.minecraft.net/assets/textures/previews/9.png",
+    "sha256": "10999aed3cae31aa71a5af2be1104ca567db7aa1d957bd2fd8a71a13ec9c209f",
+    "bytes": 1701,
+    "width": 32,
+    "height": 32
+  },
+  {
+    "path": "assets-cg/classic/textures/red_flower.png",
+    "url": "https://classic.minecraft.net/assets/textures/red_flower.png",
+    "sha256": "0ea7d46662da50d4ff5dc116712e4b011eb41c5de8e36d270b51dc927b850ef7",
+    "bytes": 1095,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/red_mushroom.png",
+    "url": "https://classic.minecraft.net/assets/textures/red_mushroom.png",
+    "sha256": "8da715a204e3c21c17b4ab206bf7f19e7f84356c073273fbab9b38f8a24c74e7",
+    "bytes": 1067,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/rock.png",
+    "url": "https://classic.minecraft.net/assets/textures/rock.png",
+    "sha256": "e6121f0d7d897c26f7989fcab92f3c0ff81e6a0d65e407ac2509cffa30e9415b",
+    "bytes": 1548,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/rock_bronze.png",
+    "url": "https://classic.minecraft.net/assets/textures/rock_bronze.png",
+    "sha256": "fcc1b415b31bf258a12dfe9dd2cb2e8ef396912d303e1cf85ab905e4761485c0",
+    "bytes": 1331,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/rock_coal.png",
+    "url": "https://classic.minecraft.net/assets/textures/rock_coal.png",
+    "sha256": "93cda7c5a5d4b573aceac4f60411aa3e39e211a1ebadf5f26e5aaf4b734e6b8e",
+    "bytes": 1277,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/rock_gold.png",
+    "url": "https://classic.minecraft.net/assets/textures/rock_gold.png",
+    "sha256": "b822be6ab4841ba591178cc13c02284c3ad115f9dc20ebe2d575e0671bdc0b46",
+    "bytes": 1293,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/sand.png",
+    "url": "https://classic.minecraft.net/assets/textures/sand.png",
+    "sha256": "ab345586e2162e95ad3432b95bdc5ef98fd0e3cf50095ccc29609e50e3dce8b4",
+    "bytes": 1599,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/sponge.png",
+    "url": "https://classic.minecraft.net/assets/textures/sponge.png",
+    "sha256": "14275324a44d7ee61d68c8c5599074feb6b0e503e7ef1206a8e46f7b50b5d1b0",
+    "bytes": 1542,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/stevearm.png",
+    "url": "https://classic.minecraft.net/assets/textures/stevearm.png",
+    "sha256": "d5283f4b9d17714fbfe3b6b9106c54b1d97a5b5e0baca8e95144bfb543becd2a",
+    "bytes": 1192,
+    "width": 96,
+    "height": 12
+  },
+  {
+    "path": "assets-cg/classic/textures/stevehead.png",
+    "url": "https://classic.minecraft.net/assets/textures/stevehead.png",
+    "sha256": "663df72ba780828cd6a4b96f6848874527629b77d9a836db00d46adfaa0f768d",
+    "bytes": 1700,
+    "width": 64,
+    "height": 8
+  },
+  {
+    "path": "assets-cg/classic/textures/steveleg.png",
+    "url": "https://classic.minecraft.net/assets/textures/steveleg.png",
+    "sha256": "6f5998a5acab6c18ba6229d0ff1cefd5e32addf9222fbda5a4ccdca5135c3ace",
+    "bytes": 1095,
+    "width": 96,
+    "height": 12
+  },
+  {
+    "path": "assets-cg/classic/textures/stevetorso.png",
+    "url": "https://classic.minecraft.net/assets/textures/stevetorso.png",
+    "sha256": "caade7506f1db64ff0a5983b55bb54e41215f046166d0bc4dac722a225428806",
+    "bytes": 1405,
+    "width": 96,
+    "height": 12
+  },
+  {
+    "path": "assets-cg/classic/textures/stone.png",
+    "url": "https://classic.minecraft.net/assets/textures/stone.png",
+    "sha256": "b83fc5c95ceac3e1baf3c8a26a2bf0111c405f3e7f90031735ad51ea212e35fe",
+    "bytes": 1162,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/tree_side.png",
+    "url": "https://classic.minecraft.net/assets/textures/tree_side.png",
+    "sha256": "17fa782b541e0c38ee80600e09607cac0df9ba2f4c7e0130c859e8d74f62158d",
+    "bytes": 1470,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/tree_top.png",
+    "url": "https://classic.minecraft.net/assets/textures/tree_top.png",
+    "sha256": "b29dd25c400433c6cc3001b920164fe307250f47911fca84a3297b91af68b8e8",
+    "bytes": 1343,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/water.png",
+    "url": "https://classic.minecraft.net/assets/textures/water.png",
+    "sha256": "0c2665dfc763f12955c11d86abb04121f3761d2e156c5f409f4755fbd2546859",
+    "bytes": 1103,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/wood.png",
+    "url": "https://classic.minecraft.net/assets/textures/wood.png",
+    "sha256": "4ce0ea642680ab5d393839b1fa66611fb75d699a19aa4b4bb214fd4d008c4feb",
+    "bytes": 1227,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "path": "assets-cg/classic/textures/yellow_flower.png",
+    "url": "https://classic.minecraft.net/assets/textures/yellow_flower.png",
+    "sha256": "f57657d4fdd4495dc8a1e2ecfc577895f1067fc613537cfe5fc2b41d1695d904",
+    "bytes": 1066,
+    "width": 16,
+    "height": 16
+  }
+]

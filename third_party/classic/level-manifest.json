@@ -1,0 +1,16 @@
+{
+  "seed": 12345,
+  "size": 128,
+  "height": 64,
+  "worker_sha256": "c70fb815ae18acf268149613cbb896d0fd794e080cc85182f0d67fecd0091352",
+  "world_sha256": "2865b462809b9f6ceed34651e26be7c0c930d3efb5e31385f79d723b629edca1",
+  "layout": "(y * 128 + z) * 128 + x",
+  "chunk_edge": 8,
+  "chunk_id": "(cy * 16 + cz) * 16 + cx",
+  "local_id": "(ly * 8 + lz) * 8 + lx",
+  "rle_word": "((run_length - 1) << 6) | block_id",
+  "runs": 58753,
+  "rom_bytes": 142086,
+  "decoded_chunk_bytes": 512,
+  "verified_exact_roundtrip": true
+}

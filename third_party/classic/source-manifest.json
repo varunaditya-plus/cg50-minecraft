@@ -1,0 +1,211 @@
+{
+  "retrieved_utc": "2026-10-12",
+  "official_bundle": {
+    "url": "https://classic.minecraft.net/assets/js/app.js?34ecd8a604d38d02ba1e",
+    "bytes": 8396505,
+    "sha256": "e57c662e3e095bde0e8e6e64e914d1e0394c1ece51deeaeb1cd452d214e79272"
+  },
+  "readable_repository": {
+    "url": "https://github.com/TheSunCat/Minecraft-Classic-Reversed",
+    "commit": "03f234ae8c10f74c22e1dd5429c368610c9c4a2a",
+    "bundle_sha256": "b5975e75324aa81e10fc0dad917e44f9b1cbb668cbcf62262170e1b3d5844e51"
+  },
+  "files": [
+    {
+      "path": "third_party/classic/LICENSE-noa.txt",
+      "bytes": 1100,
+      "sha256": "ee01501075d6ff10e060536694b4334bb8fd5a089d0da19b3707a4c3bcd3948c"
+    },
+    {
+      "path": "third_party/classic/LICENSE-reversed.txt",
+      "bytes": 1070,
+      "sha256": "e358e8c4ef7c43b72fae46178a43a88ee44a10c4536b64bbaf70d84e6c0969de"
+    },
+    {
+      "path": "third_party/classic/LICENSE-voxel-physics.txt",
+      "bytes": 1077,
+      "sha256": "309315c529a001b8462ee4ad83d48c9658f453e92678063c035e67188c31850f"
+    },
+    {
+      "path": "third_party/classic/RandomLevelWorker.js",
+      "bytes": 8171,
+      "sha256": "c70fb815ae18acf268149613cbb896d0fd794e080cc85182f0d67fecd0091352",
+      "url": "https://classic.minecraft.net/assets/js/RandomLevelWorker.js"
+    },
+    {
+      "path": "third_party/classic/RandomLevelWorker.readable.js",
+      "bytes": 26089,
+      "sha256": "8bf4b8d00771c4fceca5721b9a9293573cad7a1a8a2a74873f6c535580cfe6b1",
+      "url": "https://raw.githubusercontent.com/TheSunCat/Minecraft-Classic-Reversed/03f234ae8c10f74c22e1dd5429c368610c9c4a2a/assets/js/RandomLevelWorker.js"
+    },
+    {
+      "path": "third_party/classic/app.js.LICENSE.txt",
+      "bytes": 1459,
+      "sha256": "0b43f06be8c3836c996f2bc0f5798cd8a464b7906c6b741aba5f58c4d5b49aa2"
+    },
+    {
+      "path": "third_party/classic/entry.js",
+      "bytes": 135091,
+      "sha256": "093681e09558b7eb87411d867601b1d93217197e5915bde4da620e4523a0255d",
+      "origin": "official_bundle",
+      "role": "Game initialization, block rules, click handling and networking entrypoint"
+    },
+    {
+      "path": "third_party/classic/modules/187.js",
+      "bytes": 3144,
+      "sha256": "2075e0bcc3a32d182be5a48aaf3b73604436c953c1fe2495f6109e499884206f",
+      "webpack_module": 187,
+      "role": "Nine-slot hotbar and scroll cycle",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/20713.js",
+      "bytes": 866,
+      "sha256": "4f05761ea2fe628e03a2be3da0bbd19bffe8f78b82495c0fb88d501f70a63180",
+      "webpack_module": 20713,
+      "role": "Keyboard movement inputs",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/21703.js",
+      "bytes": 285,
+      "sha256": "26144fd55db3101b527500d51b805489f89425b89cd00c3e0ef782be74070115",
+      "webpack_module": 21703,
+      "role": "Mesh building",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/26579.js",
+      "bytes": 1275,
+      "sha256": "f75bd5217fc6deb54e100552f135f328b9e905d95abbfac65a585b2dac3daf44",
+      "webpack_module": 26579,
+      "role": "Rigid body",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/29692.js",
+      "bytes": 1676,
+      "sha256": "f5df221700c75f3175d8d0e7c6bef50e75a856f6b0ae795cfad67bc15eaa4873",
+      "webpack_module": 29692,
+      "role": "Voxel ray targeting",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/37119.js",
+      "bytes": 7324,
+      "sha256": "5b8aa9fd1f632719243f83d2cbae82d639848ce4e34f73ebb39c982724a11aa0",
+      "webpack_module": 37119,
+      "role": "Noa engine construction and targeting",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/43936.js",
+      "bytes": 4290,
+      "sha256": "a293588de6651bdafbb272af908f0c2745f91e693351e7a7b3887008919c904a",
+      "webpack_module": 43936,
+      "role": "Block registry and material face mapping",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/46280.js",
+      "bytes": 714,
+      "sha256": "815e4e346dd8868e8bdeea8aacba7b81e4cae41c65af31e1ef8fa7c72004753a",
+      "webpack_module": 46280,
+      "role": "Camera rotation and pitch clamp",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/55132.js",
+      "bytes": 5240,
+      "sha256": "78a6bebe9a926e1623bf3c13c0e1e5b2717c1ff7c78383fab06f0d565f181fe5",
+      "webpack_module": 55132,
+      "role": "Rigid physics integration and fluid buoyancy",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/64601.js",
+      "bytes": 2709,
+      "sha256": "1156382e1412da9b9b27c73b0f7bafe64972dd2eb67de2c9bbae533c2d376a3b",
+      "webpack_module": 64601,
+      "role": "Swept voxel AABB collision",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/66358.js",
+      "bytes": 1505,
+      "sha256": "1c6dad9e5569bef8e65244fe345e007a351ee46063f8ca1989547b7f9a26838f",
+      "webpack_module": 66358,
+      "role": "Noa physics adapter and plant collision exceptions",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/67343.js",
+      "bytes": 4305,
+      "sha256": "5b3df7825e4bc09f46c309ead34e19f7c4372958a96daaa2167a1532b92a906a",
+      "webpack_module": 67343,
+      "role": "32-block inventory picker",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/71268.js",
+      "bytes": 702,
+      "sha256": "e33c8a9d92564bd801965083e8cbbbd17da35d64ec6b836b29fa8ceac6c00652",
+      "webpack_module": 71268,
+      "role": "Crossed plant planes",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/80131.js",
+      "bytes": 19958,
+      "sha256": "0667f6ef192f499792b7b174b1466a463e93443925f27f8d19666faf1d1bb886",
+      "webpack_module": 80131,
+      "role": "Babylon rendering integration",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/85452.js",
+      "bytes": 4716,
+      "sha256": "7bb6e027f1d48b4e8c4359e858a437f9c0f878ac19deb2ddba11b82c9d241d7b",
+      "webpack_module": 85452,
+      "role": "Entity components and dimensions",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/90583.js",
+      "bytes": 3125,
+      "sha256": "852d7e9768f16dfb46958c4168e0cfafcc154f185bec341b8dec78fc254a9869",
+      "webpack_module": 90583,
+      "role": "Player movement and jump state",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/9210.js",
+      "bytes": 271,
+      "sha256": "fbd3d6f8d7d409d619942883a9bedd2d17a529c4b7097333af32a8237310824a",
+      "webpack_module": 9210,
+      "role": "Water surface mesh",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/96834.js",
+      "bytes": 210,
+      "sha256": "91dd18369127fb4b3dec7a8e3d1515405e80a61833276080612795805e38e7e2",
+      "webpack_module": 96834,
+      "role": "Chunk terrain meshing integration",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/98296.js",
+      "bytes": 14312,
+      "sha256": "e089492f0e519632d07f0a593aaededa6dfa12fad31d9e9a652bbed36ef2b13a",
+      "webpack_module": 98296,
+      "role": "Greedy terrain mesher",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/README.md",
+      "bytes": 4702,
+      "sha256": "e8429fde5b170afae517dc32e6ab3b1d8151320c927b0a1ed25a6a5960dbb0ff"
+    }
+  ]
+}
