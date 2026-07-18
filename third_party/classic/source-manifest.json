@@ -206,6 +206,390 @@
       "path": "third_party/classic/README.md",
       "bytes": 4702,
       "sha256": "e8429fde5b170afae517dc32e6ab3b1d8151320c927b0a1ed25a6a5960dbb0ff"
+    },
+    {
+      "path": "third_party/classic/modules/220.js",
+      "bytes": 116,
+      "sha256": "34ee5e063fcf2c8c53fe8c53f14a2be065f6eb732d3428d48a048ea2cc81f9b2",
+      "webpack_module": 220,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/3594.js",
+      "bytes": 228,
+      "sha256": "b70750eaaac6d8a831b2bca9d1fd889e7f11fe250a06c0ead3ac8ec141755c0d",
+      "webpack_module": 3594,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/4252.js",
+      "bytes": 151,
+      "sha256": "b807be0afe917ad55112518f5d86705e0a95b062dba68a15aa04aedebaf737e2",
+      "webpack_module": 4252,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/11380.js",
+      "bytes": 148,
+      "sha256": "fe40bd9f8a070315697f5ad23fe90834cf4548115fa6ee6b97813ca975033486",
+      "webpack_module": 11380,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/13544.js",
+      "bytes": 107,
+      "sha256": "04cb630cfd45b1aebc7ad8738215bfbf326bb0b48362ec42775fb3eb887a4c5d",
+      "webpack_module": 13544,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/13928.js",
+      "bytes": 347,
+      "sha256": "c2bc1acc663e6d3c9145806aca1b6428e5cf8a541084c2907f5f4e559acbf692",
+      "webpack_module": 13928,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/14226.js",
+      "bytes": 939,
+      "sha256": "ada7512bcdd4f145bbdabb057b38fdcb15e686a589c77b0fec0896b35fa11e9c",
+      "webpack_module": 14226,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/19765.js",
+      "bytes": 22,
+      "sha256": "7ede64df215ea3a0ba9637b46018a5d9bd096b7b8a7fe30cc78cbafe06608c19",
+      "webpack_module": 19765,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/21229.js",
+      "bytes": 204,
+      "sha256": "3dfcd8ddc5dd4159c02b53c4db8b8a57ea868f39a15eee26f14b2004b7004ce2",
+      "webpack_module": 21229,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/22573.js",
+      "bytes": 219,
+      "sha256": "70666e726ac45b3ed5fa1d24fce7c5e1583f4a820067f75a4a5f96398f030e5c",
+      "webpack_module": 22573,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/23401.js",
+      "bytes": 116,
+      "sha256": "e0c0640877431bd6e30f2e18ba0e3fccecf54c7ba76c078eba08ef6ee3baccb1",
+      "webpack_module": 23401,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/25053.js",
+      "bytes": 116,
+      "sha256": "00104ce98a1e8bc5433d64e5df2ba700b374dd2887b00379f0db9ded5f468cbf",
+      "webpack_module": 25053,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/25421.js",
+      "bytes": 145,
+      "sha256": "f2235bfeb7e9516c41839dbef489c812a8ca43634e5f0f5bd639728e3d39a147",
+      "webpack_module": 25421,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/28317.js",
+      "bytes": 237,
+      "sha256": "e783f5319235e214d6335ae47025224251027d2f70ab0f6a5676953562da2dcd",
+      "webpack_module": 28317,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/28817.js",
+      "bytes": 354,
+      "sha256": "33d6fbb05361de9cb63619f8a4605cc22510de4bed0283fb0ec61c5d928af193",
+      "webpack_module": 28817,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/31144.js",
+      "bytes": 22,
+      "sha256": "70a61d5bdb26d086071c218efc9709eaf10b6a86ae2adc113e0102ab83290c48",
+      "webpack_module": 31144,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/32473.js",
+      "bytes": 22,
+      "sha256": "6390c3b19c92f2f16375274ea7038ef46d09d9c7757cfaeb25b0a18a5171c453",
+      "webpack_module": 32473,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/34136.js",
+      "bytes": 117,
+      "sha256": "229c2375d422794bc2ecf50361ec944f061132c72191579b2786de70bb71f803",
+      "webpack_module": 34136,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/36591.js",
+      "bytes": 120,
+      "sha256": "e671bab49965bd5e9a5a8ef5526fe7f6e4885765f3f61d30eb01a3273055dfd3",
+      "webpack_module": 36591,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/36936.js",
+      "bytes": 116,
+      "sha256": "5f9e3e2a1f8ea6e6aa1a643098d66b66cc01445cbe9ef10f2746b8094175919b",
+      "webpack_module": 36936,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/40728.js",
+      "bytes": 22,
+      "sha256": "5e022f7cd6474ed9383841549636287a4579bd293a1c91f4034f22ce19b57c12",
+      "webpack_module": 40728,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/41374.js",
+      "bytes": 163,
+      "sha256": "49586bde77ae7e627cecdd6737fca8c106e09b205ea5727cd72b0600dc843586",
+      "webpack_module": 41374,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/41785.js",
+      "bytes": 250,
+      "sha256": "be2693bb4ab8e86c54e5e851bd2c938492de25f57eeaf85c08376deddfb72791",
+      "webpack_module": 41785,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/42286.js",
+      "bytes": 104,
+      "sha256": "da4d27ca1bbee78a4c076a4f1267db4f946096c697b82fbbe59a2f9ed41baabd",
+      "webpack_module": 42286,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/44397.js",
+      "bytes": 22,
+      "sha256": "3472e8fce1f0cd7c81355c74cb8f84f954f14c812e775272d08d327b55cb7aa4",
+      "webpack_module": 44397,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/45178.js",
+      "bytes": 95,
+      "sha256": "f24cc16d565884a0fce4cea420f01fb0207827036959f26e245843bbfb0596a6",
+      "webpack_module": 45178,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/51216.js",
+      "bytes": 110,
+      "sha256": "6a82c9f06cc650fa77ea1e07c5fd18c367146b45ee961f076698e68620809bdc",
+      "webpack_module": 51216,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/61263.js",
+      "bytes": 252,
+      "sha256": "b9badf98d635c1803cc56a423171e0577f792e9c9a385932e8bd523808c1de87",
+      "webpack_module": 61263,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/63198.js",
+      "bytes": 117,
+      "sha256": "5d64b721f1b70a65fd4d34d6da18c5e936aa5f3d23e8c8c7390d571342d1af0d",
+      "webpack_module": 63198,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/64312.js",
+      "bytes": 130,
+      "sha256": "e204fbecbc95768a77edd739e95a440c7d924401761ab2007cf19f0f0f2bd95d",
+      "webpack_module": 64312,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/68051.js",
+      "bytes": 141,
+      "sha256": "9c4efc44ec50261261fc0ce8e1310da40622eba354d6bf1a9558ec3045823816",
+      "webpack_module": 68051,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/70080.js",
+      "bytes": 22,
+      "sha256": "5098b118cfa29c3f3bb4bb0097af90cb8480c4c039348cefbb4c56c15c4c091e",
+      "webpack_module": 70080,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/70409.js",
+      "bytes": 83,
+      "sha256": "71d2c30b04741fa001eca60022023a803d7c18625d94b12df46c01d8128ecdc7",
+      "webpack_module": 70409,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/71536.js",
+      "bytes": 390,
+      "sha256": "3a8d619365dc41f98b6c6779a6675bd36064c331ba3ce51936b0326ba1e898c0",
+      "webpack_module": 71536,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/71589.js",
+      "bytes": 92,
+      "sha256": "c864973ccb1b0a6cf43f2461ae1601b68fbd98faf38a7291d41c91454a238f49",
+      "webpack_module": 71589,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/72811.js",
+      "bytes": 253,
+      "sha256": "06fe3c531ccac5645f7fc3f3656bfd839ce5e50788e6bfde326c54be351cec01",
+      "webpack_module": 72811,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/72864.js",
+      "bytes": 18,
+      "sha256": "9090bd8a21b3da11337601baf81e1654559dd868b10058c2981d2eb0cee00ec6",
+      "webpack_module": 72864,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/73618.js",
+      "bytes": 89,
+      "sha256": "186a6bd3428002943455e1d0d490977f70a0a5f372ba0310c900655b424a0f9f",
+      "webpack_module": 73618,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/74621.js",
+      "bytes": 2060,
+      "sha256": "c36569b7bef048822bf253f6a72e82fd80551cf91b90e90a394acb3bbaf796f2",
+      "webpack_module": 74621,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/82617.js",
+      "bytes": 389,
+      "sha256": "53d352958fdb591201d6e2a0d9753f0f6173c2550d7ee564927c57f22342d0ba",
+      "webpack_module": 82617,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/83636.js",
+      "bytes": 20,
+      "sha256": "fe435d9af2604a2205052cc3179710d30ef9f12aca1cec880968359a3a3430dd",
+      "webpack_module": 83636,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/85930.js",
+      "bytes": 148,
+      "sha256": "3a8656407498e92daaa8909a0f2cdf312ade29235be143c159ad8b7b60906106",
+      "webpack_module": 85930,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/89059.js",
+      "bytes": 106,
+      "sha256": "983ec37dc096356a7ab7593ad5ae9a08bf30d2de75a6e76add505b230d9960f6",
+      "webpack_module": 89059,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/89137.js",
+      "bytes": 252,
+      "sha256": "addb1768b3ac0611e3ed1018afd58ff0375fc91afbee39b630f918457b4af800",
+      "webpack_module": 89137,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/92849.js",
+      "bytes": 1797,
+      "sha256": "0bff6a2248b5f450df7ec07eacd763300fcfcbea13ae3af7278a202ad1b61ce5",
+      "webpack_module": 92849,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/94964.js",
+      "bytes": 91,
+      "sha256": "a3f26d407ee97f2a3b15057161432438bf1f76a40fd2fe500e88676dce8e11b5",
+      "webpack_module": 94964,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/98104.js",
+      "bytes": 252,
+      "sha256": "39fe66f18535b1663500e68da1d334605d8f035c015f4c5f12a154de435a63b0",
+      "webpack_module": 98104,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/99200.js",
+      "bytes": 163,
+      "sha256": "c1c24defe143dea2468e34a4eb609212293c10f475615e2ba4d8948a5cc9b27a",
+      "webpack_module": 99200,
+      "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
     }
   ]
 }
