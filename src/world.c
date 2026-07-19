@@ -8,6 +8,7 @@
 // edited 8-cube chunks need writable storage on the calculator.
 static uint8_t *edited[WORLD_CHUNK_COUNT];
 static int8_t light_depth[WORLD_SIZE * WORLD_SIZE];
+static uint8_t light_dirty[16 * 16];
 static struct {
     uint8_t blocks[WORLD_CHUNK_VOLUME];
     int id;
@@ -63,6 +64,7 @@ void world_reset(void)
         cache[i].used = 0;
     }
     memcpy(light_depth, classic_light_depth, sizeof light_depth);
+    memset(light_dirty, 0, sizeof light_dirty);
     cache_clock = 0;
     world_revision++;
 }
@@ -139,6 +141,14 @@ int world_chunk_modified(int cx, int cy, int cz)
 
 uint32_t world_chunk_revision(int cx, int cy, int cz)
 {
+    // A changed roof shades faces throughout this column of chunks. Faces
+    // at its edge can also sample the neighbouring column's brightness.
+    static const int8_t columns[5][2] = {{0,0},{-1,0},{1,0},{0,-1},{0,1}};
+    for(unsigned i = 0; i < 5; i++) {
+        int x = cx + columns[i][0], z = cz + columns[i][1];
+        if(x >= 0 && x < 16 && z >= 0 && z < 16 && light_dirty[z * 16 + x])
+            return world_revision;
+    }
     static const int8_t adjacent[7][3] = {
         {0,0,0}, {-1,0,0}, {1,0,0}, {0,-1,0}, {0,1,0}, {0,0,-1}, {0,0,1}
     };
@@ -158,17 +168,21 @@ int world_light_depth(int x, int z)
 void world_add_light(int x, int y, int z)
 {
     if(x >= 0 && x < WORLD_SIZE - 1 && z >= 0 && z < WORLD_SIZE - 1 &&
-        y >= light_depth[z * WORLD_SIZE + x])
+        y > light_depth[z * WORLD_SIZE + x]) {
         light_depth[z * WORLD_SIZE + x] = y;
+        light_dirty[(z >> 3) * 16 + (x >> 3)] = 1;
+    }
 }
 
 void world_remove_light(int x, int y, int z)
 {
     if(x < 0 || x >= WORLD_SIZE - 1 || z < 0 || z >= WORLD_SIZE - 1 ||
         y < light_depth[z * WORLD_SIZE + x]) return;
+    int previous = light_depth[z * WORLD_SIZE + x];
     // Entry removeBlockCheckLit starts one cell BELOW the removed cell.
     uint8_t block = BLOCK_AIR;
     while(!block_light_blocker(block) && y >= 0)
         block = world_get(x, --y, z);
     light_depth[z * WORLD_SIZE + x] = y;
+    if(y != previous) light_dirty[(z >> 3) * 16 + (x >> 3)] = 1;
 }
