@@ -70,14 +70,18 @@ int main(void)
         uint32_t now = ticks, elapsed = now - previous;
         if (elapsed) {
             previous = now;
-            if (elapsed > 8) elapsed = 8;
             if (!paused) {
                 PlayerInput input = {!game.inventory_open && keydown(KEY_8),
                     !game.inventory_open && keydown(KEY_5),
                     !game.inventory_open && keydown(KEY_4),
                     !game.inventory_open && keydown(KEY_6),
                     !game.inventory_open && keydown(KEY_SHIFT)};
+                uint32_t catchup_start = ticks;
                 for (uint32_t i = 0; i < elapsed; i++) {
+                    // Original game-shell module 9886 catches up every owed
+                    // 30 ms tick. Its 175 ms budget limits catch-up work, not
+                    // elapsed time. Six hardware ticks approximate that budget.
+                    if (ticks - catchup_start >= 6) { previous = ticks; break; }
                     if (!game.inventory_open) player_look(&game.player,
                         (keydown(KEY_RIGHT) - keydown(KEY_LEFT)) * 0.045f,
                         (keydown(KEY_DOWN) - keydown(KEY_UP)) * 0.045f);
