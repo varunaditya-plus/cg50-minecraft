@@ -70,4 +70,5 @@ extern const ClassicSprite classic_previews[CLASSIC_INVENTORY_COUNT];
 extern const ClassicSprite classic_hotbar_background;
 extern const ClassicSprite classic_hotbar_selection;
 extern const ClassicSprite classic_crosshair;
+extern const ClassicSprite classic_clouds;
 #endif
