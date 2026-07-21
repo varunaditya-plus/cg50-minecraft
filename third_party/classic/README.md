@@ -11,6 +11,7 @@ The official bundle retrieved on 12 October 2026 is `assets/js/app.js?34ecd8a604
 | `RandomLevelWorker.js` | Exact seed, distorted Perlin noise, raising, erosion, soil, cave and ore carving, water, lava, grass and trees. Executed directly during the resource build. |
 | `entry.js` | Original block IDs, materials, lighting, block interaction, grass, foliage, falling sand/gravel, fluids, sponges and finite world boundaries. |
 | `modules/37119.js` | Noa engine's player dimensions, eye position, targeting and terrain placement collision. |
+| `modules/89824.js`, `9886.js` | Noa container and original game shell: 30 ms fixed ticks, pending tick catch-up, and a 175 ms catch-up work budget. |
 | `modules/90583.js`, `20713.js` | Player movement, jump force, liquid behaviour and input headings. |
 | `modules/66358.js`, `55132.js`, `26579.js`, `64601.js` | Physics adapter, rigid integration, buoyancy and swept voxel AABB collision. |
 | `modules/29692.js`, `46280.js` | Voxel ray targeting and camera rotation limits. |

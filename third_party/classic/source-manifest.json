@@ -204,8 +204,8 @@
     },
     {
       "path": "third_party/classic/README.md",
-      "bytes": 4702,
-      "sha256": "e8429fde5b170afae517dc32e6ab3b1d8151320c927b0a1ed25a6a5960dbb0ff"
+      "bytes": 4854,
+      "sha256": "8cb79b1af14db5a5836c5f5fa985d322943d9767862f27eba14ef63f1c4332cb"
     },
     {
       "path": "third_party/classic/modules/220.js",
@@ -589,6 +589,22 @@
       "sha256": "c1c24defe143dea2468e34a4eb609212293c10f475615e2ba4d8948a5cc9b27a",
       "webpack_module": 99200,
       "role": "Original transitive dependency of player physics and vectors",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/89824.js",
+      "bytes": 3366,
+      "sha256": "a69210bbb83e0d3f8b93b37ea5a872b8d33dee98da8606777466c30c8dc9f0e5",
+      "webpack_module": 89824,
+      "role": "Noa browser container and tick/render shell adapter",
+      "origin": "official_bundle"
+    },
+    {
+      "path": "third_party/classic/modules/9886.js",
+      "bytes": 16040,
+      "sha256": "a23eaed18252155a960a88231957ce5ef6eba5a09618b1bfb33bd8a39ae5f4e9",
+      "webpack_module": 9886,
+      "role": "Original fixed 30 ms game scheduler with a 175 ms catch-up work budget",
       "origin": "official_bundle"
     }
   ]
