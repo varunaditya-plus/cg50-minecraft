@@ -126,25 +126,54 @@ static uint16_t blend(uint16_t a, uint16_t b, unsigned alpha)
 
 static Screen project(Vertex v)
 {
-    int q = (int)(((int64_t)1 << 32) / v.z);
+    // floor(2^32/z), using SH4's 32-bit divide. Adding one is necessary
+    // exactly when z divides 2^32, i.e. z is a power of two.
+    unsigned z = v.z;
+    int q = (int)(UINT32_MAX / z + ((z & (z - 1)) == 0));
     return (Screen){WIDTH * 8 + v.x * (FOCAL * 16) / v.z,
         HEIGHT * 8 - v.y * (FOCAL * 16) / v.z, q,
         (int)((int64_t)v.u * q >> 8), (int)((int64_t)v.v * q >> 8)};
 }
 
-static Screen edge_point(Screen a, Screen b, int y)
+typedef struct { int64_t x, y; } Gradient;
+
+static Gradient gradient(int av, int bv, int cv, Screen a, Screen b,
+    Screen c, int area)
 {
-    int numerator = y - a.y, denominator = b.y - a.y;
-    return (Screen){interpolate(a.x, b.x, numerator, denominator), y,
-        interpolate(a.q, b.q, numerator, denominator),
-        interpolate(a.uq, b.uq, numerator, denominator),
-        interpolate(a.vq, b.vq, numerator, denominator)};
+    int64_t ab = (int64_t)bv - av, ac = (int64_t)cv - av;
+    // Screen positions use sixteenths of a pixel. Slopes use eight extra
+    // fractional bits, retaining smooth perspective-correct UV interpolation
+    // without any divisions in the scanline setup.
+    return (Gradient){(ab * (c.y-a.y) - ac * (b.y-a.y)) * 4096 / area,
+        (ac * (b.x-a.x) - ab * (c.x-a.x)) * 4096 / area};
+}
+
+static int64_t attribute_start(int value, Gradient g, Screen origin,
+    int x, int y)
+{
+    return (int64_t)value * 256 +
+        (g.x * (x*16+8-origin.x) + g.y * (y*16+8-origin.y)) / 16;
+}
+
+static inline int divide_uv(int numerator, unsigned denominator,
+    unsigned reciprocal)
+{
+    // Two UV coordinates share one reciprocal division per pixel. The SH4
+    // multiplies directly into MACH:MACL; correct its at-most-one-unit
+    // underestimate to retain exact C signed-division texture selection.
+    unsigned magnitude = numerator < 0 ? 0u-(unsigned)numerator :
+        (unsigned)numerator;
+    unsigned quotient = (unsigned)((uint64_t)magnitude*reciprocal >> 32);
+    if (magnitude-quotient*denominator >= denominator) quotient++;
+    return numerator < 0 ? (int)(0u-quotient) : (int)quotient;
 }
 
 static void triangle(Screen a, Screen b, Screen c, int texture,
     unsigned brightness, int transparent)
 {
     Screen points[3] = {a, b, c};
+    int area = (b.x-a.x)*(c.y-a.y) - (c.x-a.x)*(b.y-a.y);
+    if (!area) return;
     int miny = a.y, maxy = a.y;
     for (int i = 1; i < 3; i++) {
         if (points[i].y < miny) miny = points[i].y;
@@ -154,34 +183,39 @@ static void triangle(Screen a, Screen b, Screen c, int texture,
     maxy = (maxy - 8) / 16;
     if (miny < 0) miny = 0;
     if (maxy >= HEIGHT) maxy = HEIGHT - 1;
+    if (miny > maxy) return;
+    Gradient qgradient = gradient(a.q,b.q,c.q,a,b,c,area);
+    Gradient ugradient = gradient(a.uq,b.uq,c.uq,a,b,c,area);
+    Gradient vgradient = gradient(a.vq,b.vq,c.vq,a,b,c,area);
     for (int y = miny; y <= maxy; y++) {
         int scan = y * 16 + 8, n = 0;
-        Screen ends[3];
+        int ends[3];
         for (int i = 0; i < 3; i++) {
             Screen p = points[i], q = points[(i + 1) % 3];
             if ((p.y <= scan && q.y > scan) || (q.y <= scan && p.y > scan))
-                ends[n++] = edge_point(p, q, scan);
+                // Clipped coordinates bound this product below 2^31.
+                ends[n++] = p.x + (q.x-p.x)*(scan-p.y)/(q.y-p.y);
         }
         if (n < 2) continue;
-        Screen left = ends[0], right = ends[1];
-        if (left.x > right.x) { Screen t = left; left = right; right = t; }
-        int span = right.x - left.x;
-        if (!span) continue;
-        int start = (left.x + 7) / 16, end = (right.x - 8) / 16;
+        int left = ends[0], right = ends[1];
+        if (left > right) { int t = left; left = right; right = t; }
+        if (left == right) continue;
+        int start = (left + 7) / 16, end = (right - 8) / 16;
         if (start < 0) start = 0;
         if (end >= WIDTH) end = WIDTH - 1;
         if (start > end) continue;
-        int offset = start * 16 + 8 - left.x;
-        int q = interpolate(left.q, right.q, offset, span);
-        int uq = interpolate(left.uq, right.uq, offset, span);
-        int vq = interpolate(left.vq, right.vq, offset, span);
-        int dq = (int)((int64_t)(right.q - left.q) * 16 / span);
-        int du = (int)((int64_t)(right.uq - left.uq) * 16 / span);
-        int dv = (int)((int64_t)(right.vq - left.vq) * 16 / span);
+        int64_t qvalue = attribute_start(a.q,qgradient,a,start,y);
+        int64_t uvalue = attribute_start(a.uq,ugradient,a,start,y);
+        int64_t vvalue = attribute_start(a.vq,vgradient,a,start,y);
         unsigned pos = y * WIDTH + start;
-        for (int x = start; x <= end; x++, pos++, q += dq, uq += du, vq += dv) {
+        for (int x = start; x <= end; x++, pos++, qvalue += qgradient.x,
+            uvalue += ugradient.x, vvalue += vgradient.x) {
+            int q = (int)(qvalue/256);
+            int uq = (int)(uvalue/256), vq = (int)(vvalue/256);
             if (q <= 0 || (unsigned)(q >> 8) <= depth[pos]) continue;
-            unsigned texel = ((vq / q) & 15) * 16 + ((uq / q) & 15);
+            unsigned reciprocal = UINT32_MAX/(unsigned)q;
+            unsigned texel = (divide_uv(vq,q,reciprocal) & 15) * 16 +
+                (divide_uv(uq,q,reciprocal) & 15);
             unsigned alpha = classic_texture_alpha[texture][texel];
             if (alpha < 128) continue;
             uint16_t color = shade(classic_textures[texture][texel], brightness);
@@ -194,10 +228,27 @@ static void triangle(Screen a, Screen b, Screen c, int texture,
 
 static void polygon(Vertex *vertices, int texture, unsigned light, int alpha)
 {
+    unsigned outside = 0, common = 63;
+    for (int i = 0; i < 4; i++) {
+        unsigned code = 0;
+        for (int plane = 0; plane < 6; plane++)
+            if (plane_distance(vertices[i],plane) < 0) code |= 1u << plane;
+        outside |= code;
+        common &= code;
+    }
+    if (common) return;
+    if (!outside) {
+        Screen a = project(vertices[0]), b = project(vertices[1]);
+        Screen c = project(vertices[2]), d = project(vertices[3]);
+        triangle(a,b,c,texture,light,alpha);
+        triangle(a,c,d,texture,light,alpha);
+        return;
+    }
     Vertex buffers[2][12];
     memcpy(buffers[0], vertices, 4 * sizeof(Vertex));
     int count = 4, side = 0;
     for (int plane = 0; plane < 6 && count; plane++) {
+        if (!(outside & (1u << plane))) continue;
         count = clip(buffers[side], count, buffers[!side], plane);
         side = !side;
     }
