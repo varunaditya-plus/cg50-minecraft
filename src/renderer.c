@@ -355,9 +355,7 @@ static void draw_quad(const Camera *camera, int cx, int cy, int cz,
         vertices[3] = view(camera, x + lo, y + FIXED, z1, 0, 0);
     } else {
         if (axis == 1 && !(face & 1) && fluid) y -= 287;
-        int base[3] = {x, y, z};
         int u = (axis + 1) % 3, v = (axis + 2) % 3;
-        int du = q->width * FIXED, dv = q->height * FIXED;
         int sign = face & 1 ? -1 : 1;
         int uv[4][2];
         if (axis == 2) {
@@ -369,12 +367,21 @@ static void draw_quad(const Camera *camera, int cx, int cy, int cz,
                 {sign * q->height, 0}, {sign * q->height, q->width}};
             memcpy(uv, a, sizeof uv);
         }
+        // Integer block offsets transform exactly by the camera basis.
+        vertices[0] = view(camera, x, y, z, 0, 0);
+        Vertex du = {q->width * camera->matrix[0][u],
+            q->width * camera->matrix[1][u], q->width * camera->matrix[2][u], 0, 0};
+        Vertex dv = {q->height * camera->matrix[0][v],
+            q->height * camera->matrix[1][v], q->height * camera->matrix[2][v], 0, 0};
+        vertices[1] = (Vertex){vertices[0].x + du.x, vertices[0].y + du.y,
+            vertices[0].z + du.z, 0, 0};
+        vertices[2] = (Vertex){vertices[1].x + dv.x, vertices[1].y + dv.y,
+            vertices[1].z + dv.z, 0, 0};
+        vertices[3] = (Vertex){vertices[0].x + dv.x, vertices[0].y + dv.y,
+            vertices[0].z + dv.z, 0, 0};
         for (int i = 0; i < 4; i++) {
-            int p[3] = {base[0], base[1], base[2]};
-            if (i == 1 || i == 2) p[u] += du;
-            if (i >= 2) p[v] += dv;
-            vertices[i] = view(camera, p[0], p[1], p[2],
-                uv[i][0] * 16 * 256, uv[i][1] * 16 * 256);
+            vertices[i].u = uv[i][0] * 16 * 256;
+            vertices[i].v = uv[i][1] * 16 * 256;
         }
     }
     // NOA's hemispheric light points toward (0.1,1,0.3), ground=0.5.
