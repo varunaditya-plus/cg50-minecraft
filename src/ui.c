@@ -5,12 +5,30 @@
 static void sprite(const ClassicSprite *image, int left, int top, int width,
     int height)
 {
-    for (int y = 0; y < height; y++) for (int x = 0; x < width; x++) {
-        unsigned src = (y * image->height / height) * image->width +
-            x * image->width / width;
-        if (image->alpha[src] >= 128 && left + x >= 0 && left + x < DWIDTH &&
-            top + y >= 0 && top + y < DHEIGHT)
-            gint_vram[(top + y) * DWIDTH + left + x] = image->pixels[src];
+    int x0 = left < 0 ? -left : 0, y0 = top < 0 ? -top : 0;
+    int x1 = width < DWIDTH - left ? width : DWIDTH - left;
+    int y1 = height < DHEIGHT - top ? height : DHEIGHT - top;
+    if (x0 >= x1 || y0 >= y1) return;
+    int xstep = image->width / width, xrest = image->width % width;
+    int ystep = image->height / height, yrest = image->height % height;
+    int sx0 = x0 * image->width / width, xr0 = x0 * image->width % width;
+    int sy = y0 * image->height / height, yr = y0 * image->height % height;
+    // Increment the exact nearest-neighbour source coordinates without
+    // repeating either division inside the pixel loop.
+    for (int y = y0; y < y1; y++) {
+        const uint16_t *pixels = image->pixels + sy * image->width;
+        const uint8_t *alpha = image->alpha + sy * image->width;
+        uint16_t *out = gint_vram + (top + y) * DWIDTH + left + x0;
+        int sx = sx0, xr = xr0;
+        for (int x = x0; x < x1; x++, out++) {
+            if (alpha[sx] >= 128) *out = pixels[sx];
+            sx += xstep;
+            xr += xrest;
+            if (xr >= width) { xr -= width; sx++; }
+        }
+        sy += ystep;
+        yr += yrest;
+        if (yr >= height) { yr -= height; sy++; }
     }
 }
 
