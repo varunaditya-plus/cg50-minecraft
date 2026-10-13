@@ -12,6 +12,9 @@
 // Render at 198x112 and nearest-scale to the CG50's RGB565 LCD.
 enum { WIDTH = 198, HEIGHT = 112, FIXED = 4096, FOCAL = 80, FAR = 48 };
 static uint16_t pixels[WIDTH * HEIGHT], depth[WIDTH * HEIGHT];
+enum { TILE_COLUMNS = (WIDTH + 7) / 8, TILE_COUNT = TILE_COLUMNS * (HEIGHT / 8) };
+static uint16_t tile_depth[TILE_COUNT];
+static uint8_t tile_coverage[TILE_COUNT][8], tile_rows[TILE_COUNT];
 typedef struct { int x, y, z, u, v; } Vertex;
 typedef struct { int x, y, q, uq, vq; } Screen;
 typedef struct { int matrix[3][3], eye[3]; } Camera;
@@ -135,6 +138,64 @@ static Screen project(Vertex v)
         (int)((int64_t)v.u * q >> 8), (int)((int64_t)v.v * q >> 8)};
 }
 
+// First complete coverage establishes a conservative tile depth. Later writes
+// normally move nearer; retaining the old minimum avoids rescanning each pixel.
+static void cover_tile(int x, int y)
+{
+    unsigned tile = (y >> 3) * TILE_COLUMNS + (x >> 3);
+    if (tile_depth[tile]) {
+        // Keep the bound safe even if a depth conversion wraps to uint16_t.
+        if (depth[y * WIDTH + x] < tile_depth[tile])
+            tile_depth[tile] = depth[y * WIDTH + x];
+        return;
+    }
+    uint8_t *row = &tile_coverage[tile][y & 7], old = *row;
+    *row |= 1u << (x & 7);
+    unsigned full = (x >> 3) == TILE_COLUMNS - 1 ?
+        (1u << (WIDTH - (TILE_COLUMNS - 1) * 8)) - 1 : 255;
+    if (old == full || *row != full || ++tile_rows[tile] != 8) return;
+    unsigned minimum = UINT16_MAX;
+    for (int yy = (y >> 3) * 8; yy < (y >> 3) * 8 + 8; yy++)
+        for (int xx = (x >> 3) * 8; xx < (x >> 3) * 8 + 8 && xx < WIDTH; xx++)
+            if (depth[yy * WIDTH + xx] < minimum)
+                minimum = depth[yy * WIDTH + xx];
+    tile_depth[tile] = minimum;
+}
+
+static int tiles_occlude(Screen a, Screen b, Screen c, int area,
+    int miny, int maxy)
+{
+    int minx = a.x, maxx = a.x, nearest = a.q;
+    Screen points[2] = {b, c};
+    for (int i = 0; i < 2; i++) {
+        if (points[i].x < minx) minx = points[i].x;
+        if (points[i].x > maxx) maxx = points[i].x;
+        if (points[i].q > nearest) nearest = points[i].q;
+    }
+    minx = (minx + 7) / 16;
+    maxx = (maxx - 8) / 16;
+    if (minx < 0) minx = 0;
+    if (maxx >= WIDTH) maxx = WIDTH - 1;
+    if (minx > maxx) return 0;
+    unsigned minimum = UINT16_MAX;
+    for (int y = miny >> 3; y <= maxy >> 3; y++)
+        for (int x = minx >> 3; x <= maxx >> 3; x++) {
+            unsigned bound = tile_depth[y * TILE_COLUMNS + x];
+            if (bound <= (unsigned)(nearest >> 8)) return 0;
+            if (bound < minimum) minimum = bound;
+        }
+    // Edge rounding and first-column endpoint division can sample up to one
+    // pixel outside a thin triangle. Bound sixteen subpixels of q slope
+    // plus fixed-point rounding before rejecting.
+    // Cross multiplication avoids the gradient divisions this test replaces.
+    int gap = (int)(minimum * 256) - nearest - 8;
+    if (gap <= 0) return 0;
+    int64_t slope = ((int64_t)b.q - a.q) * (c.y - a.y) -
+        ((int64_t)c.q - a.q) * (b.y - a.y);
+    uint64_t magnitude = slope < 0 ? (uint64_t)(-slope) : (uint64_t)slope;
+    return (uint64_t)(unsigned)gap * (unsigned)abs(area) > magnitude * 16;
+}
+
 typedef struct { int64_t x, y; } Gradient;
 
 static Gradient gradient(int av, int bv, int cv, Screen a, Screen b,
@@ -184,6 +245,7 @@ static void triangle(Screen a, Screen b, Screen c, int texture,
     if (miny < 0) miny = 0;
     if (maxy >= HEIGHT) maxy = HEIGHT - 1;
     if (miny > maxy) return;
+    if (tiles_occlude(a, b, c, area, miny, maxy)) return;
     Gradient qgradient = gradient(a.q,b.q,c.q,a,b,c,area);
     Gradient ugradient = gradient(a.uq,b.uq,c.uq,a,b,c,area);
     Gradient vgradient = gradient(a.vq,b.vq,c.vq,a,b,c,area);
@@ -222,6 +284,7 @@ static void triangle(Screen a, Screen b, Screen c, int texture,
             if (transparent) color = blend(color, pixels[pos], transparent);
             pixels[pos] = color;
             depth[pos] = q >> 8;
+            cover_tile(x, y);
         }
     }
 }
@@ -393,6 +456,9 @@ void renderer_draw(const Game *game, uint16_t *framebuffer)
          (int)(p->position[2] * FIXED)}};
     for (unsigned i = 0; i < WIDTH * HEIGHT; i++) pixels[i] = 0xe77f;
     memset(depth, 0, sizeof depth);
+    memset(tile_depth, 0, sizeof tile_depth);
+    memset(tile_coverage, 0, sizeof tile_coverage);
+    memset(tile_rows, 0, sizeof tile_rows);
     clouds(&camera, game->time);
     unsigned count = 0;
     for (int y = 0; y < 8; y++) for (int z = 0; z < 16; z++)
