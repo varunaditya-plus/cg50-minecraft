@@ -18,7 +18,7 @@ static uint8_t tile_coverage[TILE_COUNT][8], tile_rows[TILE_COUNT];
 typedef struct { int x, y, z, u, v; } Vertex;
 typedef struct { int x, y, q, uq, vq; } Screen;
 typedef struct { int matrix[3][3], eye[3]; } Camera;
-typedef struct { uint16_t id; int distance; } VisibleChunk;
+typedef struct { uint16_t id; uint8_t has_fluid; int distance; } VisibleChunk;
 static VisibleChunk visible[2048];
 
 static int transform_row(const Camera *c, int row, int x, int y, int z)
@@ -326,10 +326,8 @@ static void polygon(Vertex *vertices, int texture, unsigned light, int alpha)
 }
 
 static void draw_quad(const Camera *camera, int cx, int cy, int cz,
-    const ClassicQuad *q, int pass, int preview_alpha)
+    const ClassicQuad *q, int fluid, int preview_alpha)
 {
-    int fluid = block_fluid(q->block);
-    if (!preview_alpha && !!fluid != pass) return;
     int face = q->face == 8 ? 2 : q->face;
     int x = (cx * 8 + q->x) * FIXED;
     int y = (cy * 8 + q->y) * FIXED;
@@ -401,12 +399,13 @@ static void placement_preview(const Camera *camera, const Game *game)
     if (x < 0 || x >= WORLD_SIZE - 1 || z < 0 || z >= WORLD_SIZE - 1 ||
         y < 0 || y >= WORLD_HEIGHT) return;
     uint8_t block = game->hotbar[game->selected];
+    int fluid = block_fluid(block);
     // Module 80131: adjacent textured preview, alpha 0.35..0.70.
     int alpha = (int)((0.35f + 0.35f * fabsf(sinf(0.003f * game->time))) * 32);
     if (block_plant(block)) {
         for (int face = 6; face < 8; face++) {
             ClassicQuad q = {x & 7, y & 7, z & 7, 1, 1, face, block, 0};
-            draw_quad(camera, x >> 3, y >> 3, z >> 3, &q, 0, alpha);
+            draw_quad(camera, x >> 3, y >> 3, z >> 3, &q, fluid, alpha);
         }
     } else for (int face = 0; face < 6; face++) {
         ClassicQuad q = {x & 7, y & 7, z & 7, 1, 1, face, block, 0};
@@ -415,7 +414,7 @@ static void placement_preview(const Camera *camera, const Game *game)
             if (face == 2) q.y++;
             if (face == 4) q.z++;
         }
-        draw_quad(camera, x >> 3, y >> 3, z >> 3, &q, 0, alpha);
+        draw_quad(camera, x >> 3, y >> 3, z >> 3, &q, fluid, alpha);
     }
 }
 
@@ -495,7 +494,8 @@ void renderer_draw(const Game *game, uint16_t *framebuffer)
                     break;
                 }
             if (outside) continue;
-            VisibleChunk v = {(y * 16 + z) * 16 + x, centre.z};
+            VisibleChunk v = {.id = (y * 16 + z) * 16 + x,
+                .distance = centre.z};
             unsigned i = count++;
             while (i && visible[i - 1].distance > v.distance) {
                 visible[i] = visible[i - 1]; i--;
@@ -503,11 +503,18 @@ void renderer_draw(const Game *game, uint16_t *framebuffer)
             visible[i] = v;
         }
     for (int pass = 0; pass < 2; pass++) for (unsigned j = 0; j < count; j++) {
-        unsigned id = visible[pass ? count - j - 1 : j].id;
+        VisibleChunk *chunk = &visible[pass ? count - j - 1 : j];
+        if (pass && !chunk->has_fluid) continue;
+        unsigned id = chunk->id;
         int x = id & 15, z = (id >> 4) & 15, y = id >> 8;
         unsigned n;
         const ClassicQuad *quads = mesh_get_chunk(x, y, z, &n);
-        for (unsigned i = 0; i < n; i++) draw_quad(&camera, x, y, z, &quads[i], pass, 0);
+        for (unsigned i = 0; i < n; i++) {
+            int fluid = block_fluid(quads[i].block);
+            if (!pass && fluid) chunk->has_fluid = 1;
+            if (!!fluid == pass)
+                draw_quad(&camera, x, y, z, &quads[i], fluid, 0);
+        }
     }
     if (game->add_mode) placement_preview(&camera, game);
     else outline(&camera, &game->target);
