@@ -9,11 +9,13 @@
 static uint8_t *edited[WORLD_CHUNK_COUNT];
 static int8_t light_depth[WORLD_SIZE * WORLD_SIZE];
 static uint32_t light_revision[16 * 16];
-static struct {
+typedef struct {
     uint8_t blocks[WORLD_CHUNK_VOLUME];
     int id;
     uint32_t used;
-} cache[16];
+} CacheEntry;
+static CacheEntry cache[16];
+static CacheEntry *recent = cache;
 static uint32_t cache_clock;
 uint32_t world_revision;
 
@@ -39,18 +41,24 @@ static void decode(int id, uint8_t out[512])
 static const uint8_t *chunk(int id)
 {
     if(edited[id]) return edited[id];
+    if(recent->id == id) {
+        recent->used = ++cache_clock;
+        return recent->blocks;
+    }
     unsigned oldest = 0;
     for(unsigned i = 0; i < 16; i++) {
         if(cache[i].id == id) {
             cache[i].used = ++cache_clock;
-            return cache[i].blocks;
+            recent = &cache[i];
+            return recent->blocks;
         }
         if(cache[i].used < cache[oldest].used) oldest = i;
     }
     decode(id, cache[oldest].blocks);
     cache[oldest].id = id;
     cache[oldest].used = ++cache_clock;
-    return cache[oldest].blocks;
+    recent = &cache[oldest];
+    return recent->blocks;
 }
 
 void world_reset(void)
@@ -66,6 +74,7 @@ void world_reset(void)
     memcpy(light_depth, classic_light_depth, sizeof light_depth);
     memset(light_revision, 0, sizeof light_revision);
     cache_clock = 0;
+    recent = cache;
     world_revision++;
 }
 
