@@ -8,7 +8,7 @@
 // edited 8-cube chunks need writable storage on the calculator.
 static uint8_t *edited[WORLD_CHUNK_COUNT];
 static int8_t light_depth[WORLD_SIZE * WORLD_SIZE];
-static uint8_t light_dirty[16 * 16];
+static uint32_t light_revision[16 * 16];
 static struct {
     uint8_t blocks[WORLD_CHUNK_VOLUME];
     int id;
@@ -56,7 +56,7 @@ static const uint8_t *chunk(int id)
 void world_reset(void)
 {
     for(int i = 0; i < WORLD_CHUNK_COUNT; i++) {
-        free(edited[i]);
+        free(edited[i] ? edited[i] - sizeof(uint32_t) : NULL);
         edited[i] = NULL;
     }
     for(unsigned i = 0; i < 16; i++) {
@@ -64,7 +64,7 @@ void world_reset(void)
         cache[i].used = 0;
     }
     memcpy(light_depth, classic_light_depth, sizeof light_depth);
-    memset(light_dirty, 0, sizeof light_dirty);
+    memset(light_revision, 0, sizeof light_revision);
     cache_clock = 0;
     world_revision++;
 }
@@ -101,12 +101,14 @@ int world_set(int x, int y, int z, uint8_t block)
     unsigned local = ((y & 7) * 8 + (z & 7)) * 8 + (x & 7);
     if(chunk(id)[local] == block) return 1;
     if(!edited[id]) {
-        edited[id] = malloc(WORLD_CHUNK_VOLUME);
-        if(!edited[id]) return 0;
+        uint32_t *allocation = malloc(sizeof(uint32_t) + WORLD_CHUNK_VOLUME);
+        if(!allocation) return 0;
+        edited[id] = (uint8_t *)(allocation + 1);
         decode(id, edited[id]);
     }
     edited[id][local] = block;
     world_revision++;
+    ((uint32_t *)edited[id])[-1] = world_revision;
     return 1;
 }
 
@@ -143,19 +145,24 @@ uint32_t world_chunk_revision(int cx, int cy, int cz)
 {
     // A changed roof shades faces throughout this column of chunks. Faces
     // at its edge can also sample the neighbouring column's brightness.
+    uint32_t revision = 0;
     static const int8_t columns[5][2] = {{0,0},{-1,0},{1,0},{0,-1},{0,1}};
     for(unsigned i = 0; i < 5; i++) {
         int x = cx + columns[i][0], z = cz + columns[i][1];
-        if(x >= 0 && x < 16 && z >= 0 && z < 16 && light_dirty[z * 16 + x])
-            return world_revision;
+        if(x >= 0 && x < 16 && z >= 0 && z < 16 &&
+            light_revision[z * 16 + x] > revision)
+            revision = light_revision[z * 16 + x];
     }
     static const int8_t adjacent[7][3] = {
         {0,0,0}, {-1,0,0}, {1,0,0}, {0,-1,0}, {0,1,0}, {0,0,-1}, {0,0,1}
     };
-    for(unsigned i = 0; i < 7; i++)
-        if(world_chunk_modified(cx + adjacent[i][0], cy + adjacent[i][1],
-            cz + adjacent[i][2])) return world_revision;
-    return 0;
+    for(unsigned i = 0; i < 7; i++) {
+        int id = chunk_id(cx + adjacent[i][0], cy + adjacent[i][1],
+            cz + adjacent[i][2]);
+        if(id >= 0 && edited[id] && ((uint32_t *)edited[id])[-1] > revision)
+            revision = ((uint32_t *)edited[id])[-1];
+    }
+    return revision;
 }
 
 int world_light_depth(int x, int z)
@@ -170,7 +177,7 @@ void world_add_light(int x, int y, int z)
     if(x >= 0 && x < WORLD_SIZE - 1 && z >= 0 && z < WORLD_SIZE - 1 &&
         y > light_depth[z * WORLD_SIZE + x]) {
         light_depth[z * WORLD_SIZE + x] = y;
-        light_dirty[(z >> 3) * 16 + (x >> 3)] = 1;
+        light_revision[(z >> 3) * 16 + (x >> 3)] = world_revision;
     }
 }
 
@@ -184,5 +191,5 @@ void world_remove_light(int x, int y, int z)
     while(!block_light_blocker(block) && y >= 0)
         block = world_get(x, --y, z);
     light_depth[z * WORLD_SIZE + x] = y;
-    if(y != previous) light_dirty[(z >> 3) * 16 + (x >> 3)] = 1;
+    if(y != previous) light_revision[(z >> 3) * 16 + (x >> 3)] = world_revision;
 }
