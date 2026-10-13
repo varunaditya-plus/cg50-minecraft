@@ -460,16 +460,34 @@ void renderer_draw(const Game *game, uint16_t *framebuffer)
     memset(tile_coverage, 0, sizeof tile_coverage);
     memset(tile_rows, 0, sizeof tile_rows);
     clouds(&camera, game->time);
+    // The support of an eight-cube AABB on each camera frustum plane.
+    // Integer corners transform exactly as centre +/- four matrix columns.
+    int radius[6];
+    radius[0] = radius[1] = 4 * (abs(camera.matrix[2][0]) +
+        abs(camera.matrix[2][1]) + abs(camera.matrix[2][2]));
+    for (int plane = 2; plane < 6; plane++) {
+        int row = plane < 4 ? 0 : 1;
+        int half = plane < 4 ? WIDTH / 2 : HEIGHT / 2;
+        int sign = plane & 1 ? -1 : 1, extent = 0;
+        for (int axis = 0; axis < 3; axis++)
+            extent += abs(half * camera.matrix[2][axis] +
+                sign * FOCAL * camera.matrix[row][axis]);
+        // Fractional plant/fluid vertices have at most one unit of rounding
+        // per axis and camera row before those rows form a frustum plane.
+        radius[plane] = 4 * extent + 3 * (half + FOCAL);
+    }
     unsigned count = 0;
     for (int y = 0; y < 8; y++) for (int z = 0; z < 16; z++)
         for (int x = 0; x < 16; x++) {
             Vertex centre = view(&camera, (x * 8 + 4) * FIXED,
                 (y * 8 + 4) * FIXED, (z * 8 + 4) * FIXED, 0, 0);
-            int radius = 7 * FIXED;
-            if (centre.z < -radius || centre.z > (FAR + 7) * FIXED ||
-                abs(centre.x) > (centre.z + radius) * (WIDTH / 2) / FOCAL + radius ||
-                abs(centre.y) > (centre.z + radius) * (HEIGHT / 2) / FOCAL + radius)
-                continue;
+            int outside = 0;
+            for (int plane = 0; plane < 6; plane++)
+                if (plane_distance(centre, plane) + radius[plane] < 0) {
+                    outside = 1;
+                    break;
+                }
+            if (outside) continue;
             VisibleChunk v = {(y * 16 + z) * 16 + x, centre.z};
             unsigned i = count++;
             while (i && visible[i - 1].distance > v.distance) {
