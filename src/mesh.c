@@ -56,6 +56,21 @@ ClassicQuad *mesh_build_chunk(int cx, int cy, int cz, unsigned *count)
     unsigned capacity = 0;
     *count = 0;
     int origin[3] = {cx * 8, cy * 8, cz * 8};
+    uint8_t blocks[512], neighbours[6][64];
+    world_load_chunk(cx, cy, cz, blocks);
+    static const int stride[3] = {1, 64, 8};
+    for (int axis = 0; axis < 3; axis++) {
+        int u = (axis + 1) % 3, v = (axis + 2) % 3;
+        for (int side = 0; side < 2; side++)
+            for (int j = 0; j < 8; j++) for (int i = 0; i < 8; i++) {
+                int p[3] = {origin[0], origin[1], origin[2]};
+                p[axis] += side ? 8 : -1;
+                p[u] += i;
+                p[v] += j;
+                neighbours[axis * 2 + side][j * 8 + i] =
+                    world_get(p[0], p[1], p[2]);
+            }
+    }
     for (int axis = 0; axis < 3; axis++) {
         int u = (axis + 1) % 3, v = (axis + 2) % 3;
         for (int plane = 0; plane <= 8; plane++) {
@@ -65,9 +80,12 @@ ClassicQuad *mesh_build_chunk(int cx, int cy, int cz, unsigned *count)
                 p[axis] += plane - 1;
                 p[u] += i;
                 p[v] += j;
-                uint8_t a = world_get(p[0], p[1], p[2]);
+                int index = i * stride[u] + j * stride[v] + plane * stride[axis];
+                uint8_t a = plane ? blocks[index - stride[axis]] :
+                    neighbours[axis * 2][j * 8 + i];
                 p[axis]++;
-                uint8_t b = world_get(p[0], p[1], p[2]);
+                uint8_t b = plane < 8 ? blocks[index] :
+                    neighbours[axis * 2 + 1][j * 8 + i];
                 int side = boundary_face(a, b);
                 // Each boundary belongs to the chunk containing its solid.
                 if (!side || (plane == 0 && side > 0) ||
@@ -109,8 +127,6 @@ ClassicQuad *mesh_build_chunk(int cx, int cy, int cz, unsigned *count)
     }
     // The original plant mesh (module 71268) is two double-sided diagonal
     // unit planes, centred at (0.5, 0.5, 0.5) in the block.
-    uint8_t blocks[512];
-    world_load_chunk(cx, cy, cz, blocks);
     for (int y = 0; y < 8; y++) for (int z = 0; z < 8; z++)
         for (int x = 0; x < 8; x++) {
             uint8_t block = blocks[(y * 8 + z) * 8 + x];
