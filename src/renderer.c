@@ -127,14 +127,27 @@ static uint16_t blend(uint16_t a, uint16_t b, unsigned alpha)
     return (r << 11) | (g << 5) | blue;
 }
 
+static inline int divide_uv(int numerator, unsigned denominator,
+    unsigned reciprocal)
+{
+    // Coordinates share one reciprocal division. The SH4 multiplies directly
+    // into MACH:MACL; correct its at-most-one-unit underestimate to retain
+    // exact C signed-division results.
+    unsigned magnitude = numerator < 0 ? 0u-(unsigned)numerator :
+        (unsigned)numerator;
+    unsigned quotient = (unsigned)((uint64_t)magnitude*reciprocal >> 32);
+    if (magnitude-quotient*denominator >= denominator) quotient++;
+    return numerator < 0 ? (int)(0u-quotient) : (int)quotient;
+}
+
 static Screen project(Vertex v)
 {
     // floor(2^32/z), using SH4's 32-bit divide. Adding one is necessary
     // exactly when z divides 2^32, i.e. z is a power of two.
     unsigned z = v.z;
     int q = (int)(UINT32_MAX / z + ((z & (z - 1)) == 0));
-    return (Screen){WIDTH * 8 + v.x * (FOCAL * 16) / v.z,
-        HEIGHT * 8 - v.y * (FOCAL * 16) / v.z, q,
+    return (Screen){WIDTH * 8 + divide_uv(v.x * (FOCAL * 16), z, q),
+        HEIGHT * 8 - divide_uv(v.y * (FOCAL * 16), z, q), q,
         (int)((int64_t)v.u * q >> 8), (int)((int64_t)v.v * q >> 8)};
 }
 
@@ -214,19 +227,6 @@ static int64_t attribute_start(int value, Gradient g, Screen origin,
 {
     return (int64_t)value * 256 +
         (g.x * (x*16+8-origin.x) + g.y * (y*16+8-origin.y)) / 16;
-}
-
-static inline int divide_uv(int numerator, unsigned denominator,
-    unsigned reciprocal)
-{
-    // Two UV coordinates share one reciprocal division per pixel. The SH4
-    // multiplies directly into MACH:MACL; correct its at-most-one-unit
-    // underestimate to retain exact C signed-division texture selection.
-    unsigned magnitude = numerator < 0 ? 0u-(unsigned)numerator :
-        (unsigned)numerator;
-    unsigned quotient = (unsigned)((uint64_t)magnitude*reciprocal >> 32);
-    if (magnitude-quotient*denominator >= denominator) quotient++;
-    return numerator < 0 ? (int)(0u-quotient) : (int)quotient;
 }
 
 static void triangle(Screen a, Screen b, Screen c, int texture,
